@@ -49,8 +49,8 @@ def msi_pred(exprsn,msi_model):
 def tide_pred(exprsn, cancer,tide_model,pretreat=False,vthres=0):
     set_CTL = [925, 926, 3001, 3002, 5551]
     signature_sd = tide_model['SD']
-    dysfunction_model = tide_model['Dysfunction']
-    exclusion_model = tide_model['Exclusion']
+    dysfunction_model = tide_model['Dysfunction'].reindex(exprsn.index)
+    exclusion_model = tide_model['Exclusion'].reindex(exprsn.index)
     if cancer not in CANCER_CHOICE:
         raise ValueError("Please Choose Cancer types from this options: %s" ','.join(CANCER_CHOICE))
     # Only consider studied cancer types
